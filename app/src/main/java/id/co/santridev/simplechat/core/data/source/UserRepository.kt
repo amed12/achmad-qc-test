@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/16/20 11:46 PM
+ *  * Created by Achmad Fathullah on 10/16/20 11:55 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/16/20 11:45 PM
+ *  * Last modified 10/16/20 11:55 PM
  *
  */
 
@@ -22,6 +22,16 @@ import rx.schedulers.Schedulers
 class UserRepository private constructor(private val context: Context) : IUserRepository {
     private val preferenceHelpers by lazy {
         PreferenceHelper(context)
+    }
+
+    companion object {
+        @Volatile
+        private var instance: UserRepository? = null
+
+        fun getInstance(context: Context): UserRepository =
+            instance ?: synchronized(this) {
+                instance ?: UserRepository(context)
+            }
     }
 
     override fun setCurrentUser(user: User) {
