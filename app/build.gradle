@@ -65,6 +65,9 @@ dependencies {
     //loading-animation
     implementation "com.wang.avi:library:$wang_anim"
 
+    //
+    implementation "com.qiscus.sdk:chat-core:$qiscus_sdk"
+
     //Testing
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
