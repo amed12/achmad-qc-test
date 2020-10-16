@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 12:20 AM
+ *  * Created by Achmad Fathullah on 10/17/20 1:12 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 12:19 AM
+ *  * Last modified 10/17/20 12:53 AM
  *
  */
 
@@ -13,11 +13,10 @@ import id.co.santridev.simplechat.core.domain.repository.IUserRepository
 import id.co.santridev.simplechat.core.utils.Action
 
 class UserInteractor(private val userRepository: IUserRepository) : IUserUseCase {
-    override fun setCurrentUser(user: User) {
-        userRepository.setCurrentUser(user)
+    override fun getCurrentUser(onSuccess: Action<User>, onError: Action<Throwable>) {
+        userRepository.getCurrentUser(onSuccess, onError)
     }
 
-    override fun getCurrentUser(): User = userRepository.getCurrentUser()
     override fun login(
         email: String,
         password: String,

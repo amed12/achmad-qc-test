@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /**
-  ~  * Created by Achmad Fathullah on 10/16/20 3:43 PM
+  ~  * Created by Achmad Fathullah on 10/17/20 1:12 AM
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 10/16/20 3:43 PM
+  ~  * Last modified 10/17/20 12:21 AM
   ~  */
   -->
 
@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".MainActivity">
+        <activity android:name=".login.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

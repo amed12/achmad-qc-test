@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/16/20 11:05 PM
+ *  * Created by Achmad Fathullah on 10/17/20 1:12 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/16/20 11:05 PM
+ *  * Last modified 10/17/20 1:12 AM
  *
  */
 
@@ -12,8 +12,7 @@ import id.co.santridev.simplechat.core.domain.model.User
 import id.co.santridev.simplechat.core.utils.Action
 
 interface IUserRepository {
-    fun setCurrentUser(user: User)
-    fun getCurrentUser(): User
+    fun getCurrentUser(onSuccess: Action<User>, onError: Action<Throwable>)
     fun login(
         email: String,
         password: String,

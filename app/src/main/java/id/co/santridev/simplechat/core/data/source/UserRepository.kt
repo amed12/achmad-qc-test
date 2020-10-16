@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/16/20 11:55 PM
+ *  * Created by Achmad Fathullah on 10/17/20 1:12 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/16/20 11:55 PM
+ *  * Last modified 10/17/20 1:12 AM
  *
  */
 
@@ -16,6 +16,8 @@ import id.co.santridev.simplechat.core.domain.model.User
 import id.co.santridev.simplechat.core.domain.repository.IUserRepository
 import id.co.santridev.simplechat.core.utils.Action
 import id.co.santridev.simplechat.core.utils.AvatarUtil
+import rx.Emitter
+import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
@@ -34,11 +36,14 @@ class UserRepository private constructor(private val context: Context) : IUserRe
             }
     }
 
-    override fun setCurrentUser(user: User) {
-        preferenceHelpers.setCurrentUser(user)
+    override fun getCurrentUser(onSuccess: Action<User>, onError: Action<Throwable>) {
+        getCurrentUserObservable()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ onSuccess.call(it) }) { onError.call(it) }
     }
 
-    override fun getCurrentUser(): User = preferenceHelpers.getCurrentUser()
+
     override fun login(
         email: String,
         password: String,
@@ -51,7 +56,7 @@ class UserRepository private constructor(private val context: Context) : IUserRe
             .withAvatarUrl(AvatarUtil.generateAvatar(name))
             .save()
             .map { this.mapFromQiscusAccount(it) }
-            .doOnNext { this.setCurrentUser(it) }
+            .doOnNext { preferenceHelpers.setCurrentUser(it) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ onSuccess.call(it) }) { onError.call(it) }
@@ -62,4 +67,18 @@ class UserRepository private constructor(private val context: Context) : IUserRe
         name = qiscusAccount.username,
         avatarUrl = qiscusAccount.avatar
     )
+
+    fun getCurrentUser(): User = preferenceHelpers.getCurrentUser()
+
+    private fun getCurrentUserObservable(): Observable<User> =
+        Observable.create({ subscriber ->
+            try {
+                subscriber.onNext(getCurrentUser())
+            } catch (e: Exception) {
+                subscriber.onError(e)
+            } finally {
+                subscriber.onCompleted()
+            }
+        }, Emitter.BackpressureMode.BUFFER)
+
 }
