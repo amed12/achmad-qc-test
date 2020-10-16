@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /**
-  ~  * Created by Achmad Fathullah on 10/17/20 1:12 AM
+  ~  * Created by Achmad Fathullah on 10/17/20 1:36 AM
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 10/17/20 12:21 AM
+  ~  * Last modified 10/17/20 1:36 AM
   ~  */
   -->
 
@@ -12,7 +12,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.MainActivity">
+    tools:context=".login.LoginActivity">
 
     <TextView
         android:layout_width="wrap_content"

@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 1:12 AM
+ *  * Created by Achmad Fathullah on 10/17/20 1:36 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 1:12 AM
+ *  * Last modified 10/17/20 1:36 AM
  *
  */
 
@@ -12,9 +12,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import id.co.santridev.simplechat.R
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
     }
 }
