@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 1:24 AM
+ *  * Created by Achmad Fathullah on 10/17/20 1:30 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 1:24 AM
+ *  * Last modified 10/17/20 1:30 AM
  *
  */
 
@@ -20,19 +20,36 @@ interface ILoginPresenter {
 }
 
 class LoginPresenter(
-    private val presenter: ILoginPresenter,
+    private val presenterListener: ILoginPresenter,
     private val userUseCase: IUserUseCase
 ) {
     fun start() {
         userUseCase.getCurrentUser(onSuccess = object : Action<User> {
             override fun call(t: User) {
                 if (t.id.isNotEmpty())
-                    presenter.showHomePage()
+                    presenterListener.showHomePage()
             }
         }, onError = object : Action<Throwable> {
             override fun call(t: Throwable) {
-                presenter.showErrorMessage(t.message.toString())
+                presenterListener.showErrorMessage(t.message.toString())
             }
+        })
+    }
+
+    fun login(email: String, password: String, name: String) {
+        presenterListener.showLoading()
+        userUseCase.login(email, password, name, onSuccess = object : Action<User> {
+            override fun call(t: User) {
+                presenterListener.dismissLoading()
+                presenterListener.showHomePage()
+            }
+
+        }, onError = object : Action<Throwable> {
+            override fun call(t: Throwable) {
+                presenterListener.dismissLoading()
+                presenterListener.showErrorMessage(t.message.toString())
+            }
+
         })
     }
 }
