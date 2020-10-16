@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 1:12 AM
+ *  * Created by Achmad Fathullah on 10/17/20 1:24 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 1:12 AM
+ *  * Last modified 10/17/20 1:18 AM
  *
  */
 
@@ -68,7 +68,7 @@ class UserRepository private constructor(private val context: Context) : IUserRe
         avatarUrl = qiscusAccount.avatar
     )
 
-    fun getCurrentUser(): User = preferenceHelpers.getCurrentUser()
+    private fun getCurrentUser(): User = preferenceHelpers.getCurrentUser()
 
     private fun getCurrentUserObservable(): Observable<User> =
         Observable.create({ subscriber ->
