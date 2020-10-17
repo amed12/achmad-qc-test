@@ -1,3 +1,11 @@
+/*
+ * *
+ *  * Created by Achmad Fathullah on 10/17/20 5:59 PM
+ *  * Copyright (c) 2020 . All rights reserved.
+ *  * Last modified 10/17/20 5:50 PM
+ *
+ */
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -15,6 +23,7 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {

@@ -1,8 +1,8 @@
 <!--
   ~ /**
-  ~  * Created by Achmad Fathullah on 10/17/20 1:40 PM
+  ~  * Created by Achmad Fathullah on 10/17/20 5:59 PM
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 10/17/20 1:40 PM
+  ~  * Last modified 10/17/20 5:59 PM
   ~  */
   -->
 
@@ -15,4 +15,8 @@
     <string name="hint_user_name">DisplayName</string>
     <string name="message_login_as_b">Please login again as user B</string>
     <string name="default_password_b">okeoke</string>
+    <string name="alert_oops">Oops!!</string>
+    <string name="message_not_have_chat">You don’t have any conversation.</string>
+    <string name="message_to_send_message">Lets send a message to your contact</string>
+    <string name="alert_to_start">Start Chat</string>
 </resources>
