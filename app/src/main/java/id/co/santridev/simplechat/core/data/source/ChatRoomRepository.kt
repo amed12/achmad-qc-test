@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 11:41 PM
+ *  * Created by Achmad Fathullah on 10/18/20 5:24 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 11:41 PM
+ *  * Last modified 10/18/20 5:24 AM
  *
  */
 
@@ -53,6 +53,16 @@ class ChatRoomRepository : IChatRoomRepository {
         onSuccess: Action<QiscusChatRoom>,
         onError: Action<Throwable>
     ) {
-        TODO("Not yet implemented")
+        val savedChatRoom = QiscusCore.getDataStore().getChatRoom(user.id)
+        if (savedChatRoom != null) {
+            onSuccess.call(savedChatRoom)
+            return
+        }
+        QiscusApi.getInstance()
+            .chatUser(user.id, null)
+            .doOnNext { chatRoom -> QiscusCore.getDataStore().addOrUpdate(chatRoom) }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ onSuccess.call(it) }) { onError.call(it) }
     }
 }
