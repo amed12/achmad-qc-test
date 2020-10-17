@@ -1,14 +1,14 @@
 <!--
   ~ /**
-  ~  * Created by Achmad Fathullah on 10/17/20 9:03 AM
+  ~  * Created by Achmad Fathullah on 10/18/20 6:56 AM
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 10/17/20 8:44 AM
+  ~  * Last modified 10/18/20 6:56 AM
   ~  */
   -->
 
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
