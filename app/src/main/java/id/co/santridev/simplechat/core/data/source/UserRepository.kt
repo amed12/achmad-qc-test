@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 1:04 PM
+ *  * Created by Achmad Fathullah on 10/17/20 1:40 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 1:03 PM
+ *  * Last modified 10/17/20 1:39 PM
  *
  */
 
@@ -61,7 +61,7 @@ class UserRepository(context: Context) : IUserRepository {
             .withAvatarUrl(AvatarUtil.generateAvatar(name))
             .save()
             .map { this.mapFromQiscusAccount(it) }
-            .doOnNext { setCurrentUser(it) }
+            .doOnNext { setCurrentUser(email, it) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ onSuccess.call(it) }) { onError.call(it) }
@@ -78,8 +78,8 @@ class UserRepository(context: Context) : IUserRepository {
         User::class.java
     ) ?: User()
 
-    private fun setCurrentUser(user: User) {
-        mPrefs.edit()?.putString("current_user", gson.toJson(user))?.apply()
+    private fun setCurrentUser(keyString: String, user: User) {
+        mPrefs.edit()?.putString(keyString, gson.toJson(user))?.apply()
     }
 
     private fun getCurrentUserObservable(keyString: String): Observable<User> =

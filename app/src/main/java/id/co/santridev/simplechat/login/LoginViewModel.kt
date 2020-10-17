@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 12:28 PM
+ *  * Created by Achmad Fathullah on 10/17/20 1:40 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 12:28 PM
+ *  * Last modified 10/17/20 1:39 PM
  *
  */
 
@@ -11,16 +11,11 @@ package id.co.santridev.simplechat.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.qiscus.sdk.chat.core.util.QiscusTextUtil.getString
+import id.co.santridev.simplechat.R
 import id.co.santridev.simplechat.core.domain.model.User
 import id.co.santridev.simplechat.core.domain.usecase.IUserUseCase
 import id.co.santridev.simplechat.core.utils.Action
-
-interface ILoginPresenter {
-    fun showLoading()
-    fun dismissLoading()
-    fun showHomePage()
-    fun showErrorMessage(errorMessage: String)
-}
 
 class LoginViewModel(
     private val userUseCase: IUserUseCase
@@ -32,13 +27,15 @@ class LoginViewModel(
     var stateLoading: LiveData<Boolean> = _stateLoadingLiveData
     var errorMessage: LiveData<String> = _errorStringLiveData
 
-    fun start() {
-        userUseCase.getCurrentUser(onSuccess = object : Action<User> {
+    companion object {
+        const val USER_B = "user_b@example.com"
+    }
+
+    fun start(keyUser: String) {
+        userUseCase.getCurrentUser(keyUser, onSuccess = object : Action<User> {
             override fun call(t: User) {
-                if (t.id.isNotEmpty())
+                if (t.id == USER_B)
                     _stateHomeLiveData.postValue(true)
-                else
-                    _stateHomeLiveData.postValue(false)
             }
         }, onError = object : Action<Throwable> {
             override fun call(t: Throwable) {
@@ -50,7 +47,11 @@ class LoginViewModel(
     fun login(email: String, password: String, name: String) {
         _stateLoadingLiveData.postValue(true)
         userUseCase.login(email, password, name, onSuccess = object : Action<User> {
-            override fun call(t: User) {
+            override fun call(t: User) = if (t.id != "user_b@example.com") {
+                _stateLoadingLiveData.postValue(false)
+                _stateHomeLiveData.postValue(false)
+                _errorStringLiveData.postValue(getString(R.string.message_login_as_b))
+            } else {
                 _stateLoadingLiveData.postValue(false)
                 _stateHomeLiveData.postValue(true)
             }

@@ -1,8 +1,8 @@
 <!--
   ~ /**
-  ~  * Created by Achmad Fathullah on 10/17/20 11:58 AM
+  ~  * Created by Achmad Fathullah on 10/17/20 1:40 PM
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 10/17/20 9:49 AM
+  ~  * Last modified 10/17/20 1:40 PM
   ~  */
   -->
 
@@ -12,5 +12,7 @@
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="btn_login">Login</string>
-    <string name="hint_user_name">Username</string>
+    <string name="hint_user_name">DisplayName</string>
+    <string name="message_login_as_b">Please login again as user B</string>
+    <string name="default_password_b">okeoke</string>
 </resources>
