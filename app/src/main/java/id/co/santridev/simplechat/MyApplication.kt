@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 12:20 AM
+ *  * Created by Achmad Fathullah on 10/17/20 9:12 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 12:19 AM
+ *  * Last modified 10/17/20 9:11 AM
  *
  */
 
@@ -11,6 +11,7 @@ package id.co.santridev.simplechat
 import android.app.Application
 import com.qiscus.sdk.chat.core.QiscusCore
 import id.co.santridev.simplechat.core.domain.usecase.IUserUseCase
+import id.co.santridev.simplechat.core.utils.dialog.LoadingDialog
 
 class MyApplication : Application() {
 
@@ -30,4 +31,5 @@ class MyApplication : Application() {
     }
 
     fun getUserUseCase(): IUserUseCase = AppComponent(this).getUserUseCase()
+    fun getLoadingDialog(): LoadingDialog = AppComponent(this).getLoadingDialog()
 }
