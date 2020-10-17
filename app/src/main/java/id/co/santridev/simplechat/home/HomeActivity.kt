@@ -1,18 +1,14 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/18/20 4:59 AM
+ *  * Created by Achmad Fathullah on 10/18/20 5:13 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/18/20 4:58 AM
+ *  * Last modified 10/18/20 5:11 AM
  *
  */
 
 package id.co.santridev.simplechat.home
 
-import android.graphics.Color
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -33,12 +29,7 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        val s = SpannableString("My Simple Chat")
-        s.setSpan(
-            ForegroundColorSpan(Color.parseColor("#000000")), 0, s.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        supportActionBar?.title = s
+        setSupportActionBar(toolbar)
         recyclerview.setHasFixedSize(true)
         chatRoomAdapter.setOnItemClickListener(this)
         recyclerview.adapter = chatRoomAdapter

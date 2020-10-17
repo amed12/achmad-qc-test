@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /**
-  ~  * Created by Achmad Fathullah on 10/17/20 5:59 PM
+  ~  * Created by Achmad Fathullah on 10/18/20 5:13 AM
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 10/17/20 5:59 PM
+  ~  * Last modified 10/18/20 5:11 AM
   ~  */
   -->
 
@@ -22,7 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".home.HomeActivity" />
+        <activity
+            android:name=".home.HomeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".login.LoginActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">

@@ -1,8 +1,8 @@
 <!--
   ~ /**
-  ~  * Created by Achmad Fathullah on 10/17/20 5:59 PM
+  ~  * Created by Achmad Fathullah on 10/18/20 5:13 AM
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 10/17/20 5:59 PM
+  ~  * Last modified 10/18/20 5:13 AM
   ~  */
   -->
 
@@ -19,4 +19,5 @@
     <string name="message_not_have_chat">You don’t have any conversation.</string>
     <string name="message_to_send_message">Lets send a message to your contact</string>
     <string name="alert_to_start">Start Chat</string>
+    <string name="title_home_action_bar">SimpleChat Conversation</string>
 </resources>
