@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Achmad Fathullah on 10/17/20 9:03 AM
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 10/17/20 8:49 AM
+  ~  */
+  -->
+
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#F8FAF9</color>
+    <color name="colorPrimaryDark">#babdbe</color>
+    <color name="colorPrimaryLight">#eceff1</color>
+    <color name="colorAccent">#3B96F1</color>
+    <color name="colorAccentSecondary">#C4E0F8</color>
 </resources>

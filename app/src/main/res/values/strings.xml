@@ -1,3 +1,16 @@
+<!--
+  ~ /**
+  ~  * Created by Achmad Fathullah on 10/17/20 9:03 AM
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 10/17/20 8:56 AM
+  ~  */
+  -->
+
 <resources>
     <string name="app_name">SimpleChat</string>
+    <string name="cd_default_image">This is image</string>
+    <string name="hint_email">Input Email</string>
+    <string name="hint_password">Input Password</string>
+    <string name="btn_login">Login</string>
+    <string name="hint_user_name">Input Username</string>
 </resources>

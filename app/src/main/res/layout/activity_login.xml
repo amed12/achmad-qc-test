@@ -1,26 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ /**
-  ~  * Created by Achmad Fathullah on 10/17/20 1:36 AM
+  ~  * Created by Achmad Fathullah on 10/17/20 9:03 AM
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 10/17/20 1:36 AM
+  ~  * Last modified 10/17/20 9:02 AM
   ~  */
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginActivity">
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/cd_default_image"
+            android:src="@drawable/ic_baseline_message_64"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_username_login"
+            style="@style/Widget.AppTheme.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_padding_xnormal"
+            android:hint="@string/hint_user_name"
+            app:layout_constraintTop_toBottomOf="@id/iv_login">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_username_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_medium"
+                android:inputType="text"
+                android:lines="1"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_email_login"
+            style="@style/Widget.AppTheme.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_padding_xnormal"
+            android:hint="@string/hint_email"
+            app:layout_constraintTop_toBottomOf="@id/til_username_login">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_email_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:fontFamily="@font/sf_ui_medium"
+                android:inputType="textEmailAddress"
+                android:lines="1"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_password_login"
+            style="@style/Widget.AppTheme.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_padding_xnormal"
+            android:hint="@string/hint_password"
+            app:layout_constraintTop_toBottomOf="@id/til_email_login"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_password_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_ui_medium"
+                android:inputType="textPassword"
+                android:lines="1"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_padding_xnormal"
+            android:backgroundTint="@color/colorAccent"
+            android:fontFamily="@font/sf_ui_bold"
+            android:padding="@dimen/margin_padding_normal"
+            android:text="@string/btn_login"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_password_login"
+            app:layout_constraintVertical_bias="0.0"
+            tools:targetApi="lollipop" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
