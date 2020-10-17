@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 11:58 AM
+ *  * Created by Achmad Fathullah on 10/17/20 12:38 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 11:57 AM
+ *  * Last modified 10/17/20 12:38 PM
  *
  */
 
@@ -13,49 +13,42 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import id.co.santridev.simplechat.MyApplication
+import androidx.lifecycle.ViewModelProvider
 import id.co.santridev.simplechat.R
 import id.co.santridev.simplechat.core.utils.dialog.LoadingDialog
 import id.co.santridev.simplechat.core.utils.extension.afterTextChanged
 import id.co.santridev.simplechat.core.utils.extension.anyNotNull
+import id.co.santridev.simplechat.core.utils.ui.ViewModelUserFactory
 import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginActivity : AppCompatActivity(), ILoginPresenter {
+class LoginActivity : AppCompatActivity() {
 
-    //    private val appInstance by lazy { MyApplication.getInstance() }
-    private val loginPresenter by lazy {
-        LoginPresenter(
-            this,
-            MyApplication.getInstance().getUserUseCase()
-        )
+    private val factory by lazy { ViewModelUserFactory.getInstance(this) }
+    private val loginViewModel by lazy {
+        ViewModelProvider(this, factory)[LoginViewModel::class.java]
     }
     private val loadingDialog by lazy { LoadingDialog(this) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        loginPresenter.start()
+        loginViewModel.start()
+        loginViewModel.errorMessage.observe(this, {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        })
+        loginViewModel.stateHomeData.observe(this, {
+            if (it)
+                Toast.makeText(this, "Login yeah", Toast.LENGTH_SHORT).show()
+        })
+        loginViewModel.stateLoading.observe(this, {
+            loadingDialog.show(it)
+        })
+
         changeStateBtnLogin()
         edt_password_register.apply {
             afterTextChanged {
                 changeStateBtnLogin()
             }
         }
-    }
-
-    override fun showLoading() {
-        loadingDialog.show(true)
-    }
-
-    override fun dismissLoading() {
-        loadingDialog.show(false)
-    }
-
-    override fun showHomePage() {
-        Toast.makeText(this, "Yeah login", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun showErrorMessage(errorMessage: String) {
-        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
     private fun changeStateBtnLogin() {
@@ -81,7 +74,7 @@ class LoginActivity : AppCompatActivity(), ILoginPresenter {
                     visibility = View.GONE
                 }
                 setOnClickListener {
-                    loginPresenter.login(userEmail, password, userName)
+                    loginViewModel.login(userEmail, password, userName)
                 }
             } else {
                 isEnabled = false
