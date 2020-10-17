@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 11:58 AM
+ *  * Created by Achmad Fathullah on 10/17/20 1:04 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 11:57 AM
+ *  * Last modified 10/17/20 1:03 PM
  *
  */
 
@@ -41,8 +41,8 @@ class UserRepository(context: Context) : IUserRepository {
             }
     }
 
-    override fun getCurrentUser(onSuccess: Action<User>, onError: Action<Throwable>) {
-        getCurrentUserObservable()
+    override fun getCurrentUser(key: String, onSuccess: Action<User>, onError: Action<Throwable>) {
+        getCurrentUserObservable(key)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ onSuccess.call(it) }) { onError.call(it) }
@@ -73,8 +73,8 @@ class UserRepository(context: Context) : IUserRepository {
         avatarUrl = qiscusAccount.avatar
     )
 
-    private fun getCurrentUser(): User = gson.fromJson(
-        mPrefs.getString("current_user", ""),
+    private fun getCurrentUser(keyString: String): User = gson.fromJson(
+        mPrefs.getString(keyString, ""),
         User::class.java
     ) ?: User()
 
@@ -82,10 +82,10 @@ class UserRepository(context: Context) : IUserRepository {
         mPrefs.edit()?.putString("current_user", gson.toJson(user))?.apply()
     }
 
-    private fun getCurrentUserObservable(): Observable<User> =
+    private fun getCurrentUserObservable(keyString: String): Observable<User> =
         Observable.create({ subscriber ->
             try {
-                subscriber.onNext(getCurrentUser())
+                subscriber.onNext(getCurrentUser(keyString))
             } catch (e: Exception) {
                 subscriber.onError(e)
             } finally {
