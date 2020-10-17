@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/18/20 5:13 AM
+ *  * Created by Achmad Fathullah on 10/18/20 5:37 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/18/20 5:11 AM
+ *  * Last modified 10/18/20 5:37 AM
  *
  */
 
@@ -33,6 +33,9 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
         recyclerview.setHasFixedSize(true)
         chatRoomAdapter.setOnItemClickListener(this)
         recyclerview.adapter = chatRoomAdapter
+        create_chat.setOnClickListener {
+            homeViewModel.chatWithB()
+        }
         homeViewModel.qiscusChatRoom.observe(this, {
             if (it.isNotEmpty()) {
                 recyclerview.visibility = View.VISIBLE
@@ -46,6 +49,10 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
         homeViewModel.errorMessageString.observe(this, {
             showToast(it)
         })
+        homeViewModel.qiscusChatRoomObject.observe(this, {
+            showToast(it.name)
+        })
+
     }
 
     override fun onResume() {
