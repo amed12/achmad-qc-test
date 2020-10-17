@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 9:12 AM
+ *  * Created by Achmad Fathullah on 10/17/20 11:58 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 9:11 AM
+ *  * Last modified 10/17/20 11:57 AM
  *
  */
 
@@ -11,9 +11,7 @@ package id.co.santridev.simplechat
 import android.content.Context
 import id.co.santridev.simplechat.core.di.Injector
 import id.co.santridev.simplechat.core.domain.usecase.IUserUseCase
-import id.co.santridev.simplechat.core.utils.dialog.LoadingDialog
 
-class AppComponent(private val context: Context) {
+class AppComponent constructor(private val context: Context) {
     fun getUserUseCase(): IUserUseCase = Injector.provideUserUseCase(context)
-    fun getLoadingDialog() = LoadingDialog(context)
 }

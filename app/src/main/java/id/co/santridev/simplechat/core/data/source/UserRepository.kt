@@ -1,17 +1,21 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 1:24 AM
+ *  * Created by Achmad Fathullah on 10/17/20 11:58 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 1:18 AM
+ *  * Last modified 10/17/20 11:57 AM
  *
  */
 
 package id.co.santridev.simplechat.core.data.source
 
 import android.content.Context
+import android.content.SharedPreferences
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.qiscus.sdk.chat.core.QiscusCore
 import com.qiscus.sdk.chat.core.data.model.QiscusAccount
-import id.co.santridev.simplechat.core.data.source.pref.PreferenceHelper
+import id.co.santridev.simplechat.core.data.source.pref.PrefsHelper
 import id.co.santridev.simplechat.core.domain.model.User
 import id.co.santridev.simplechat.core.domain.repository.IUserRepository
 import id.co.santridev.simplechat.core.utils.Action
@@ -21,10 +25,11 @@ import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
-class UserRepository private constructor(private val context: Context) : IUserRepository {
-    private val preferenceHelpers by lazy {
-        PreferenceHelper(context)
-    }
+class UserRepository(context: Context) : IUserRepository {
+    private val mPrefs: SharedPreferences = PrefsHelper.init(context)
+    private val gson: Gson =
+        GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+            .create()
 
     companion object {
         @Volatile
@@ -56,7 +61,7 @@ class UserRepository private constructor(private val context: Context) : IUserRe
             .withAvatarUrl(AvatarUtil.generateAvatar(name))
             .save()
             .map { this.mapFromQiscusAccount(it) }
-            .doOnNext { preferenceHelpers.setCurrentUser(it) }
+            .doOnNext { setCurrentUser(it) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ onSuccess.call(it) }) { onError.call(it) }
@@ -68,7 +73,14 @@ class UserRepository private constructor(private val context: Context) : IUserRe
         avatarUrl = qiscusAccount.avatar
     )
 
-    private fun getCurrentUser(): User = preferenceHelpers.getCurrentUser()
+    private fun getCurrentUser(): User = gson.fromJson(
+        mPrefs.getString("current_user", ""),
+        User::class.java
+    ) ?: User()
+
+    private fun setCurrentUser(user: User) {
+        mPrefs.edit()?.putString("current_user", gson.toJson(user))?.apply()
+    }
 
     private fun getCurrentUserObservable(): Observable<User> =
         Observable.create({ subscriber ->
