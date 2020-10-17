@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 9:12 AM
+ *  * Created by Achmad Fathullah on 10/18/20 4:59 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 9:08 AM
+ *  * Last modified 10/18/20 4:58 AM
  *
  */
 
@@ -10,6 +10,7 @@ package id.co.santridev.simplechat.core.utils.extension
 
 import android.content.Context
 import android.content.ContextWrapper
+import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
 
 fun Context.lifecycleOwner(): LifecycleOwner? {
@@ -23,4 +24,8 @@ fun Context.lifecycleOwner(): LifecycleOwner? {
     } else {
         null
     }
+}
+
+fun Context.showToast(string: String) {
+    Toast.makeText(this, string, Toast.LENGTH_SHORT).show()
 }
