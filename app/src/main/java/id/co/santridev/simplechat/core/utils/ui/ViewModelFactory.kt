@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 11:50 PM
+ *  * Created by Achmad Fathullah on 10/17/20 11:51 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 11:49 PM
+ *  * Last modified 10/17/20 11:50 PM
  *
  */
 
@@ -17,7 +17,7 @@ import id.co.santridev.simplechat.core.domain.usecase.IUserUseCase
 import id.co.santridev.simplechat.home.HomeViewModel
 import id.co.santridev.simplechat.login.LoginViewModel
 
-class ViewModelUserFactory private constructor(
+class ViewModelFactory private constructor(
     private val userUseCase: IUserUseCase,
     private val chatRoomUseCase: IChatRoomUseCase
 ) :
@@ -25,11 +25,11 @@ class ViewModelUserFactory private constructor(
 
     companion object {
         @Volatile
-        private var instance: ViewModelUserFactory? = null
+        private var instance: ViewModelFactory? = null
 
-        fun getInstance(context: Context): ViewModelUserFactory =
+        fun getInstance(context: Context): ViewModelFactory =
             instance ?: synchronized(this) {
-                instance ?: ViewModelUserFactory(
+                instance ?: ViewModelFactory(
                     Injector.provideUserUseCase(context), Injector.provideChatRoomUseCase()
                 )
             }

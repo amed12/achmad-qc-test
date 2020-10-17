@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 8:33 PM
+ *  * Created by Achmad Fathullah on 10/17/20 11:51 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 8:33 PM
+ *  * Last modified 10/17/20 11:50 PM
  *
  */
 
@@ -21,13 +21,13 @@ import id.co.santridev.simplechat.core.utils.dialog.LoadingDialog
 import id.co.santridev.simplechat.core.utils.extension.afterTextChanged
 import id.co.santridev.simplechat.core.utils.extension.anyNotNull
 import id.co.santridev.simplechat.core.utils.extension.disable
-import id.co.santridev.simplechat.core.utils.ui.ViewModelUserFactory
+import id.co.santridev.simplechat.core.utils.ui.ViewModelFactory
 import id.co.santridev.simplechat.home.HomeActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-    private val factory by lazy { ViewModelUserFactory.getInstance(this) }
+    private val factory by lazy { ViewModelFactory.getInstance(this) }
     private val loginViewModel by lazy {
         ViewModelProvider(this, factory)[LoginViewModel::class.java]
     }
