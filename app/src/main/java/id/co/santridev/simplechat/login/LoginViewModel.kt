@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 1:40 PM
+ *  * Created by Achmad Fathullah on 10/17/20 5:21 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 1:39 PM
+ *  * Last modified 10/17/20 5:21 PM
  *
  */
 
@@ -44,16 +44,25 @@ class LoginViewModel(
         })
     }
 
-    fun login(email: String, password: String, name: String) {
+    fun login(email: String, password: String, name: String, isLoginA: Boolean) {
         _stateLoadingLiveData.postValue(true)
         userUseCase.login(email, password, name, onSuccess = object : Action<User> {
-            override fun call(t: User) = if (t.id != "user_b@example.com") {
-                _stateLoadingLiveData.postValue(false)
-                _stateHomeLiveData.postValue(false)
-                _errorStringLiveData.postValue(getString(R.string.message_login_as_b))
-            } else {
-                _stateLoadingLiveData.postValue(false)
-                _stateHomeLiveData.postValue(true)
+            override fun call(t: User) {
+                if (!isLoginA)
+                    if (t.id != "user_b@example.com") {
+                        _stateLoadingLiveData.postValue(false)
+                        _stateHomeLiveData.postValue(false)
+                        _errorStringLiveData.postValue(getString(R.string.message_login_as_b))
+                    } else {
+                        _stateLoadingLiveData.postValue(false)
+                        _stateHomeLiveData.postValue(false)
+                        _errorStringLiveData.postValue("isLoginA")
+                    }
+                else {
+                    _stateLoadingLiveData.postValue(false)
+                    _stateHomeLiveData.postValue(true)
+                }
+
             }
 
         }, onError = object : Action<Throwable> {

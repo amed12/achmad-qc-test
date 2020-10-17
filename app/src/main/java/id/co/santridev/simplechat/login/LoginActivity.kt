@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 1:40 PM
+ *  * Created by Achmad Fathullah on 10/17/20 5:21 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 1:40 PM
+ *  * Last modified 10/17/20 5:15 PM
  *
  */
 
@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import id.co.santridev.simplechat.R
+import id.co.santridev.simplechat.core.domain.model.UserData
 import id.co.santridev.simplechat.core.utils.dialog.LoadingDialog
 import id.co.santridev.simplechat.core.utils.extension.afterTextChanged
 import id.co.santridev.simplechat.core.utils.extension.anyNotNull
@@ -29,12 +30,17 @@ class LoginActivity : AppCompatActivity() {
         ViewModelProvider(this, factory)[LoginViewModel::class.java]
     }
     private val loadingDialog by lazy { LoadingDialog(this) }
+    private var userData = UserData()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         loginViewModel.start(LoginViewModel.USER_B)
         loginViewModel.errorMessage.observe(this, {
-            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            if (it == "isLoginA") {
+                loginViewModel.login(userData.email, userData.password, userData.name, true)
+            } else {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            }
         })
         loginViewModel.stateHomeData.observe(this, {
             if (it)
@@ -95,7 +101,15 @@ class LoginActivity : AppCompatActivity() {
                     visibility = View.GONE
                 }
                 setOnClickListener {
-                    loginViewModel.login(userEmail, password, userName)
+                    if (userEmail != LoginViewModel.USER_B) {
+                        userData = UserData(userName, userEmail, password)
+                    }
+                    loginViewModel.login(
+                        email = userEmail,
+                        name = userName,
+                        password = password,
+                        isLoginA = false
+                    )
                 }
             } else {
                 isEnabled = false
