@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 11:38 PM
+ *  * Created by Achmad Fathullah on 10/17/20 11:41 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 11:38 PM
+ *  * Last modified 10/17/20 11:41 PM
  *
  */
 
@@ -19,6 +19,16 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
 class ChatRoomRepository : IChatRoomRepository {
+    companion object {
+        @Volatile
+        private var instance: ChatRoomRepository? = null
+
+        fun getInstance(): ChatRoomRepository =
+            instance ?: synchronized(this) {
+                instance ?: ChatRoomRepository()
+            }
+    }
+
     override fun getChatRoom(onSuccess: Action<List<QiscusChatRoom>>, onError: Action<Throwable>) {
         Observable.from(QiscusCore.getDataStore().getChatRooms(100))
             .filter { chatRoom -> chatRoom.lastComment != null }
