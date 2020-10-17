@@ -1,13 +1,14 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 8:00 PM
+ *  * Created by Achmad Fathullah on 10/17/20 8:33 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 8:00 PM
+ *  * Last modified 10/17/20 8:33 PM
  *
  */
 
 package id.co.santridev.simplechat.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -21,6 +22,7 @@ import id.co.santridev.simplechat.core.utils.extension.afterTextChanged
 import id.co.santridev.simplechat.core.utils.extension.anyNotNull
 import id.co.santridev.simplechat.core.utils.extension.disable
 import id.co.santridev.simplechat.core.utils.ui.ViewModelUserFactory
+import id.co.santridev.simplechat.home.HomeActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -43,9 +45,10 @@ class LoginActivity : AppCompatActivity() {
             }
         })
         loginViewModel.stateHomeData.observe(this, {
-            if (it)
-                Toast.makeText(this, "Login yeah", Toast.LENGTH_SHORT).show()
-            else {
+            if (it) {
+                startActivity(Intent(this, HomeActivity::class.java))
+                finish()
+            } else {
                 edt_email_login?.apply {
                     setText(LoginViewModel.USER_B)
                     disable()
