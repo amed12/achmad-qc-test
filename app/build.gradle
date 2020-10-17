@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 5:59 PM
+ *  * Created by Achmad Fathullah on 10/17/20 10:33 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 5:50 PM
+ *  * Last modified 10/17/20 8:49 PM
  *
  */
 
@@ -74,8 +74,12 @@ dependencies {
     //loading-animation
     implementation "com.wang.avi:library:$wang_anim"
 
-    //
+    //qiscus
     implementation "com.qiscus.sdk:chat-core:$qiscus_sdk"
+
+    implementation "de.hdodenhof:circleimageview:$circle_image"
+
+    implementation "com.vanniktech:emoji-one:$emoji"
 
     //Testing
     testImplementation 'junit:junit:4.12'
