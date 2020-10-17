@@ -1,14 +1,13 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 5:21 PM
+ *  * Created by Achmad Fathullah on 10/17/20 8:00 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 5:15 PM
+ *  * Last modified 10/17/20 8:00 PM
  *
  */
 
 package id.co.santridev.simplechat.login
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -20,6 +19,7 @@ import id.co.santridev.simplechat.core.domain.model.UserData
 import id.co.santridev.simplechat.core.utils.dialog.LoadingDialog
 import id.co.santridev.simplechat.core.utils.extension.afterTextChanged
 import id.co.santridev.simplechat.core.utils.extension.anyNotNull
+import id.co.santridev.simplechat.core.utils.extension.disable
 import id.co.santridev.simplechat.core.utils.ui.ViewModelUserFactory
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -48,21 +48,13 @@ class LoginActivity : AppCompatActivity() {
             else {
                 edt_email_login?.apply {
                     setText(LoginViewModel.USER_B)
-                    isFocusable = false
-                    isEnabled = false
-                    isCursorVisible = false
-                    keyListener = null
-                    setBackgroundColor(Color.TRANSPARENT)
+                    disable()
                 }
                 edt_password_register?.text?.clear()
                 edt_username_register?.text?.clear()
                 edt_password_register?.apply {
                     setText(getString(R.string.default_password_b))
-                    isFocusable = false
-                    isEnabled = false
-                    isCursorVisible = false
-                    keyListener = null
-                    setBackgroundColor(Color.TRANSPARENT)
+                    disable()
                 }
             }
         })
