@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Achmad Fathullah on 10/17/20 10:34 PM
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 10/17/20 10:34 PM
+  ~  */
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient
+        android:angle="270"
+        android:endColor="#FF7A7A"
+        android:startColor="#FF7A7A" />
+    <padding
+        android:bottom="7dp"
+        android:left="7dp"
+        android:right="7dp"
+        android:top="7dp" />
+    <corners android:radius="8dp" />
+    <stroke
+        android:width="3dp"
+        android:color="@color/qiscus_white" />
+</shape>
