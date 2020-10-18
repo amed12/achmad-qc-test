@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/18/20 12:41 PM
+ *  * Created by Achmad Fathullah on 10/18/20 12:53 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/18/20 12:41 PM
+ *  * Last modified 10/18/20 12:53 PM
  *
  */
 
@@ -12,6 +12,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.qiscus.sdk.chat.core.data.model.QiscusChatRoom
+import com.qiscus.sdk.chat.core.util.QiscusTextUtil.getString
+import id.co.santridev.simplechat.R
 import id.co.santridev.simplechat.core.domain.model.User
 import id.co.santridev.simplechat.core.domain.usecase.IChatRoomUseCase
 import id.co.santridev.simplechat.core.domain.usecase.IUserUseCase
@@ -71,7 +73,11 @@ class HomeViewModel(
             return
         }
         _chatRoomObject.postValue(room)
+    }
 
+    fun logOut() {
+        userUseCase.logOut()
+        _errorMessageString.postValue(getString(R.string.action_log_out))
     }
 
 }
