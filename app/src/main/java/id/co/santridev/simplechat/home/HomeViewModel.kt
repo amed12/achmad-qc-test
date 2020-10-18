@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/18/20 5:32 AM
+ *  * Created by Achmad Fathullah on 10/18/20 12:41 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/18/20 5:32 AM
+ *  * Last modified 10/18/20 12:41 PM
  *
  */
 
@@ -63,6 +63,15 @@ class HomeViewModel(
                 _errorMessageString.postValue(t.message.toString())
             }
         })
+    }
+
+    fun chatWithOtherExisting(room: QiscusChatRoom) {
+        if (room.isGroup) {
+            _errorMessageString.postValue("Still on development")
+            return
+        }
+        _chatRoomObject.postValue(room)
+
     }
 
 }

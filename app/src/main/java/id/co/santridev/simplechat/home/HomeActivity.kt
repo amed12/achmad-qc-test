@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/18/20 12:31 PM
+ *  * Created by Achmad Fathullah on 10/18/20 12:41 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/18/20 12:30 PM
+ *  * Last modified 10/18/20 12:39 PM
  *
  */
 
@@ -62,6 +62,6 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     override fun onItemClick(position: Int) {
-        showToast(chatRoomAdapter.data[position].name)
+        homeViewModel.chatWithOtherExisting(chatRoomAdapter.data[position])
     }
 }
