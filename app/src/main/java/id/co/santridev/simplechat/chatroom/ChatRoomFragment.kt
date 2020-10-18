@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/18/20 7:10 AM
+ *  * Created by Achmad Fathullah on 10/18/20 10:11 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/18/20 7:10 AM
+ *  * Last modified 10/18/20 10:07 AM
  *
  */
 
@@ -15,11 +15,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.qiscus.sdk.chat.core.data.model.QiscusChatRoom
 import id.co.santridev.simplechat.R
+import id.co.santridev.simplechat.core.utils.extension.QiscusPresenter
 
 
 private const val KEY_CHAT_ROOM = "param1"
 
-class ChatRoomFragment : Fragment() {
+class ChatRoomFragment : Fragment(), QiscusPresenter.View {
     private var chatRoom: QiscusChatRoom? = null
 
 
@@ -46,5 +47,17 @@ class ChatRoomFragment : Fragment() {
                     putParcelable(KEY_CHAT_ROOM, qiscusChatRoom)
                 }
             }
+    }
+
+    override fun showError(errorMessage: String?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun showLoading() {
+        TODO("Not yet implemented")
+    }
+
+    override fun dismissLoading() {
+        TODO("Not yet implemented")
     }
 }

@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/18/20 9:51 AM
+ *  * Created by Achmad Fathullah on 10/18/20 10:11 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/18/20 9:51 AM
+ *  * Last modified 10/18/20 10:05 AM
  *
  */
 
@@ -207,7 +207,7 @@ class ChatRoomPresenter(view: View, private var room: QiscusChatRoom) :
                 }
             }
             .subscribeOn(Schedulers.io())
-            .onErrorReturn { throwable: Throwable? -> null }
+            .onErrorReturn { _ -> null }
     }
 
     private fun getCommentsFromNetwork(lastCommentId: Long): Observable<MutableList<QiscusComment?>> {
@@ -492,45 +492,20 @@ class ChatRoomPresenter(view: View, private var room: QiscusChatRoom) :
     interface View : QiscusPresenter.View {
 
         override fun showError(errorMessage: String?)
-
         override fun showLoading()
-
         override fun dismissLoading()
-
         fun showLoadMoreLoading()
-
         fun initRoomData(qiscusChatRoom: QiscusChatRoom, comment: List<QiscusComment>)
-
         fun onRoomChanged(qiscusChatRoom: QiscusChatRoom)
-
         fun onLoadMore(qiscusComment: List<QiscusComment>)
-
         fun onSendingComment(qiscusComment: QiscusComment)
-
         fun onSuccessSendComment(qiscusComment: QiscusComment)
-
         fun onFailedSendComment(qiscusComment: QiscusComment)
-
         fun onNewComment(qiscusComment: QiscusComment)
-
         fun onCommentDeleted(qiscusComment: QiscusComment)
-
-        fun refreshComment(qiscusComment: QiscusComment)
-
-        fun notifyDataChanged()
-
         fun updateLastDeliveredComment(lastDeliveredCommentId: Long)
-
         fun updateLastReadComment(lastReadCommentId: Long)
-
         fun onUserTyping(user: String, typing: Boolean)
-
-        fun showCommentsAndScrollToTop(qiscusComments: List<QiscusComment>)
-
-        fun onRealtimeStatusChanged(connected: Boolean)
-
         fun onLoadCommentsError(throwable: Throwable)
-
-        fun clearCommentsBefore(timestamp: Long)
     }
 }
