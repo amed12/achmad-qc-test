@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 1:04 PM
+ *  * Created by Achmad Fathullah on 10/18/20 12:48 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 1:04 PM
+ *  * Last modified 10/18/20 12:48 PM
  *
  */
 
@@ -20,4 +20,6 @@ interface IUserUseCase {
         onSuccess: Action<User>,
         onError: Action<Throwable>
     )
+
+    fun logOut()
 }

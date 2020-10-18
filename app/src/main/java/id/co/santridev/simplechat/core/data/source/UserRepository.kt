@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 1:40 PM
+ *  * Created by Achmad Fathullah on 10/18/20 12:48 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 1:39 PM
+ *  * Last modified 10/18/20 12:48 PM
  *
  */
 
@@ -65,6 +65,11 @@ class UserRepository(context: Context) : IUserRepository {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ onSuccess.call(it) }) { onError.call(it) }
+    }
+
+    override fun logOut() {
+        QiscusCore.clearUser()
+        mPrefs.edit().clear().apply()
     }
 
     private fun mapFromQiscusAccount(qiscusAccount: QiscusAccount): User = User(
