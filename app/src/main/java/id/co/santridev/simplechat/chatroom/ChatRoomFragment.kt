@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/18/20 11:27 AM
+ *  * Created by Achmad Fathullah on 10/18/20 12:31 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/18/20 11:27 AM
+ *  * Last modified 10/18/20 12:27 PM
  *
  */
 
@@ -193,9 +193,7 @@ class ChatRoomFragment : Fragment(), ChatRoomPresenter.View, QiscusChatScrollLis
         commentsAdapter.updateLastReadComment(lastReadCommentId)
     }
 
-    override fun onUserTyping(user: String, typing: Boolean) {
-        TODO("Not yet implemented")
-    }
+    override fun onUserTyping(user: String, typing: Boolean) {}
 
     override fun onLoadCommentsError(throwable: Throwable) {
         throwable.printStackTrace()
@@ -206,13 +204,9 @@ class ChatRoomFragment : Fragment(), ChatRoomPresenter.View, QiscusChatScrollLis
         loadMoreComments()
     }
 
-    override fun onMiddleOffListMessage() {
-        TODO("Not yet implemented")
-    }
+    override fun onMiddleOffListMessage() {}
 
-    override fun onBottomOffListMessage() {
-        TODO("Not yet implemented")
-    }
+    override fun onBottomOffListMessage() {}
 
     override fun onDestroyView() {
         super.onDestroyView()

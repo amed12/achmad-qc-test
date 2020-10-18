@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/18/20 10:11 AM
+ *  * Created by Achmad Fathullah on 10/18/20 12:31 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/18/20 10:05 AM
+ *  * Last modified 10/18/20 12:27 PM
  *
  */
 
@@ -49,12 +49,6 @@ class ChatRoomPresenter(view: View, private var room: QiscusChatRoom) :
             room,
             this
         )
-    }
-
-    init {
-        if (!EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().register(this)
-        }
     }
 
     private fun commentSuccess(qiscusComment: QiscusComment) {

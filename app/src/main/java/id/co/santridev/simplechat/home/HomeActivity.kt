@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/18/20 5:37 AM
+ *  * Created by Achmad Fathullah on 10/18/20 12:31 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/18/20 5:37 AM
+ *  * Last modified 10/18/20 12:30 PM
  *
  */
 
@@ -13,6 +13,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import id.co.santridev.simplechat.R
+import id.co.santridev.simplechat.chatroom.PersonalChatRoomActivity
 import id.co.santridev.simplechat.core.utils.adapter.ChatRoomAdapter
 import id.co.santridev.simplechat.core.utils.adapter.OnItemClickListener
 import id.co.santridev.simplechat.core.utils.extension.showToast
@@ -50,7 +51,7 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
             showToast(it)
         })
         homeViewModel.qiscusChatRoomObject.observe(this, {
-            showToast(it.name)
+            startActivity(PersonalChatRoomActivity.generateIntent(this, it))
         })
 
     }
