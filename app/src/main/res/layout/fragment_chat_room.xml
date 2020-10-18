@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   ~ /**
-  ~  * Created by Achmad Fathullah on 10/18/20 7:20 AM
+  ~  * Created by Achmad Fathullah on 10/18/20 11:27 AM
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 10/18/20 7:19 AM
+  ~  * Last modified 10/18/20 10:39 AM
   ~  */
   -->
 
@@ -60,6 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:visibility="visible" />
 
         <View
