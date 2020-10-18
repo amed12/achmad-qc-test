@@ -1,3 +1,26 @@
+<!--
+  ~ /**
+  ~  * Created by Achmad Fathullah on 10/18/20 1:13 PM
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 10/18/20 1:13 PM
+  ~  */
+  -->
+
 <resources>
     <string name="app_name">SimpleChat</string>
+    <string name="cd_default_image">This is image</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_login">Login</string>
+    <string name="hint_user_name">DisplayName</string>
+    <string name="message_login_as_b">Please login again as user B</string>
+    <string name="default_password_b">okeoke</string>
+    <string name="alert_oops">Oops!!</string>
+    <string name="message_not_have_chat">You don’t have any conversation.</string>
+    <string name="message_to_send_message">Lets send a message to your contact</string>
+    <string name="alert_to_start">Start Chat</string>
+    <string name="title_home_action_bar">SimpleChat</string>
+    <string name="hint_write_message">Write a message</string>
+    <string name="message_start_discussion">Great discussion start from greeting each others first</string>
+    <string name="action_log_out">logOut</string>
 </resources>

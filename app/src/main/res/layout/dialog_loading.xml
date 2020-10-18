@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * Created by Achmad Fathullah on 10/17/20 9:12 AM
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 10/15/20 11:38 AM
+  ~  */
+  -->
+
+<com.wang.avi.AVLoadingIndicatorView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/margin_padding_xxlarge"
+    android:layout_height="@dimen/margin_padding_xxlarge"
+    android:orientation="vertical"
+    app:indicatorName="BallClipRotatePulseIndicator"
+    tools:background="@android:color/black" />

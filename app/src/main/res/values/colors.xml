@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Achmad Fathullah on 10/18/20 1:06 PM
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 10/18/20 1:02 PM
+  ~  */
+  -->
+
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#F8FAF9</color>
+    <color name="colorPrimaryDark">#babdbe</color>
+    <color name="colorAccent">#3B96F1</color>
+    <color name="colorAccentSecondary">#C4E0F8</color>
+
+    <color name="dateBackground">#E0E0E0</color>
+    <color name="pending_message">#757575</color>
+    <color name="read_message">#94CA62</color>
+
+    <color name="emoji_divider">#1F000000</color>
+
+    <color name="qiscus_white">#FFFFFF</color>
+    <color name="qiscus_left_bubble">#D0D0D0</color>
+    <color name="qiscus_right_bubble">#FFFFFF</color>
+    <color name="qiscus_light_grey">#D8D8D8</color>
+    <color name="qiscus_primary_text">#2C2C36</color>
+    <color name="qiscus_secondary_text">#979797</color>
+    <color name="qiscus_red">#d32f2f</color>
+    <color name="qiscus_green">#94CA62</color>
 </resources>

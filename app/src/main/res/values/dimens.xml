@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * Created by Achmad Fathullah on 10/18/20 1:06 PM
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 10/18/20 1:02 PM
+  ~  */
+  -->
+
+<resources>
+    <!-- Margin & padding -->
+
+    <dimen name="margin_padding_normal">15dp</dimen>
+    <dimen name="margin_padding_xnormal">20dp</dimen>
+    <dimen name="margin_padding_xlarge">40dp</dimen>
+    <dimen name="margin_padding_xxlarge">50dp</dimen>
+    <dimen name="margin_large">70dp</dimen>
+</resources>

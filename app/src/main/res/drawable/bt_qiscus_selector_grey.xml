@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * Created by Achmad Fathullah on 10/18/20 7:20 AM
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 10/18/20 7:20 AM
+  ~  */
+  -->
+
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:color="#40727272"
+    tools:targetApi="lollipop" />

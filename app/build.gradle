@@ -1,3 +1,11 @@
+/*
+ * *
+ *  * Created by Achmad Fathullah on 10/18/20 7:10 AM
+ *  * Copyright (c) 2020 . All rights reserved.
+ *  * Last modified 10/18/20 7:05 AM
+ *
+ */
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -15,6 +23,7 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -55,6 +64,7 @@ dependencies {
 
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "androidx.room:room-compiler:$room_version"
     androidTestImplementation "androidx.room:room-testing:$room_version"
 
@@ -64,6 +74,13 @@ dependencies {
 
     //loading-animation
     implementation "com.wang.avi:library:$wang_anim"
+
+    //qiscus
+    implementation "com.qiscus.sdk:chat-core:$qiscus_sdk"
+
+    implementation "de.hdodenhof:circleimageview:$circle_image"
+
+    implementation "com.vanniktech:emoji-one:$emoji"
 
     //Testing
     testImplementation 'junit:junit:4.12'
