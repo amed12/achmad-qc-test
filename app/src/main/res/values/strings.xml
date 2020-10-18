@@ -1,8 +1,8 @@
 <!--
   ~ /**
-  ~  * Created by Achmad Fathullah on 10/18/20 1:06 PM
+  ~  * Created by Achmad Fathullah on 10/18/20 1:13 PM
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 10/18/20 1:02 PM
+  ~  * Last modified 10/18/20 1:13 PM
   ~  */
   -->
 
@@ -19,9 +19,7 @@
     <string name="message_not_have_chat">You don’t have any conversation.</string>
     <string name="message_to_send_message">Lets send a message to your contact</string>
     <string name="alert_to_start">Start Chat</string>
-    <string name="title_home_action_bar">SimpleChatmig</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_home_action_bar">SimpleChat</string>
     <string name="hint_write_message">Write a message</string>
     <string name="message_start_discussion">Great discussion start from greeting each others first</string>
     <string name="action_log_out">logOut</string>
