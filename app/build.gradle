@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/17/20 10:33 PM
+ *  * Created by Achmad Fathullah on 10/18/20 7:10 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/17/20 8:49 PM
+ *  * Last modified 10/18/20 7:05 AM
  *
  */
 
@@ -64,6 +64,7 @@ dependencies {
 
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "androidx.room:room-compiler:$room_version"
     androidTestImplementation "androidx.room:room-testing:$room_version"
 

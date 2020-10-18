@@ -1,8 +1,8 @@
 <!--
   ~ /**
-  ~  * Created by Achmad Fathullah on 10/18/20 5:13 AM
+  ~  * Created by Achmad Fathullah on 10/18/20 7:10 AM
   ~  * Copyright (c) 2020 . All rights reserved.
-  ~  * Last modified 10/18/20 5:13 AM
+  ~  * Last modified 10/18/20 7:05 AM
   ~  */
   -->
 
@@ -20,4 +20,6 @@
     <string name="message_to_send_message">Lets send a message to your contact</string>
     <string name="alert_to_start">Start Chat</string>
     <string name="title_home_action_bar">SimpleChat Conversation</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
