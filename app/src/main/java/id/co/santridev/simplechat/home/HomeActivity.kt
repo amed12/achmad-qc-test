@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/18/20 12:53 PM
+ *  * Created by Achmad Fathullah on 10/18/20 1:30 PM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/18/20 12:52 PM
+ *  * Last modified 10/18/20 1:29 PM
  *
  */
 
@@ -38,6 +38,9 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
         recyclerview.adapter = chatRoomAdapter
         btn_log_out.setOnClickListener {
             homeViewModel.logOut()
+        }
+        bt_start_chat?.setOnClickListener {
+            homeViewModel.chatWithB()
         }
         create_chat.setOnClickListener {
             homeViewModel.chatWithB()
