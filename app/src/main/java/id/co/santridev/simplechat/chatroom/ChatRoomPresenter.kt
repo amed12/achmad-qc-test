@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/18/20 12:31 PM
+ *  * Created by Achmad Fathullah on 10/28/20 9:59 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/18/20 12:27 PM
+ *  * Last modified 10/28/20 9:59 AM
  *
  */
 
@@ -18,10 +18,13 @@ import com.qiscus.sdk.chat.core.data.model.QiscusRoomMember
 import com.qiscus.sdk.chat.core.data.remote.QiscusApi
 import com.qiscus.sdk.chat.core.data.remote.QiscusPusherApi
 import com.qiscus.sdk.chat.core.data.remote.QiscusResendCommentHelper
+import com.qiscus.sdk.chat.core.event.QiscusCommentReceivedEvent
+import com.qiscus.sdk.chat.core.event.QiscusCommentResendEvent
 import com.qiscus.sdk.chat.core.presenter.QiscusChatRoomEventHandler
 import com.qiscus.sdk.chat.core.util.QiscusAndroidUtil
 import id.co.santridev.simplechat.core.utils.extension.QiscusPresenter
 import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 import org.json.JSONException
 import retrofit2.HttpException
 import rx.Observable
@@ -35,8 +38,8 @@ class ChatRoomPresenter(view: View, private var room: QiscusChatRoom) :
     QiscusPresenter<ChatRoomPresenter.View>(
         view
     ), QiscusChatRoomEventHandler.StateListener {
-    val qiscusAccount: QiscusAccount by lazy { QiscusCore.getQiscusAccount() }
-    val commentComparator by lazy {
+    private val qiscusAccount: QiscusAccount by lazy { QiscusCore.getQiscusAccount() }
+    private val commentComparator by lazy {
         Func2 { lhs: QiscusComment, rhs: QiscusComment ->
             rhs.time.compareTo(lhs.time)
         }
@@ -44,11 +47,17 @@ class ChatRoomPresenter(view: View, private var room: QiscusChatRoom) :
 
     private var pendingTask: MutableMap<QiscusComment, Subscription> = mutableMapOf()
 
-    val roomEventHandler: QiscusChatRoomEventHandler by lazy {
+    private val roomEventHandler: QiscusChatRoomEventHandler by lazy {
         QiscusChatRoomEventHandler(
             room,
             this
         )
+    }
+
+    init {
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
     }
 
     private fun commentSuccess(qiscusComment: QiscusComment) {
@@ -135,6 +144,24 @@ class ChatRoomPresenter(view: View, private var room: QiscusChatRoom) :
     fun sendComment(content: String?) {
         val qiscusComment = QiscusComment.generateMessage(room.id, content)
         sendComment(qiscusComment)
+    }
+
+    @Subscribe
+    fun handleLoadCommentEvent(event: QiscusCommentResendEvent) {
+        if (event.qiscusComment.roomId == room.id) {
+            QiscusAndroidUtil.runOnUIThread {
+                if (view != null) {
+                    view.refreshComment(event.qiscusComment)
+                }
+            }
+        }
+    }
+
+    @Subscribe
+    fun onCommentReceivedEvent(event: QiscusCommentReceivedEvent) {
+        if (event.qiscusComment.roomId == room.id) {
+            onGotNewComment(event.qiscusComment)
+        }
     }
 
     fun resendComment(qiscusComment: QiscusComment) {
@@ -404,7 +431,7 @@ class ChatRoomPresenter(view: View, private var room: QiscusChatRoom) :
         }
         if (qiscusComment.roomId == room.id) {
             QiscusAndroidUtil.runOnBackgroundThread {
-                if (!qiscusComment.senderEmail.equals(qiscusAccount.email, ignoreCase = true)
+                if (!qiscusComment.senderEmail.equals(qiscusAccount.email, ignoreCase = false)
                     && QiscusCacheManager.getInstance().lastChatActivity.first!!
                 ) {
                     QiscusPusherApi.getInstance().markAsRead(room.id, qiscusComment.id)
@@ -496,6 +523,7 @@ class ChatRoomPresenter(view: View, private var room: QiscusChatRoom) :
         fun onSuccessSendComment(qiscusComment: QiscusComment)
         fun onFailedSendComment(qiscusComment: QiscusComment)
         fun onNewComment(qiscusComment: QiscusComment)
+        fun refreshComment(qiscusComment: QiscusComment)
         fun onCommentDeleted(qiscusComment: QiscusComment)
         fun updateLastDeliveredComment(lastDeliveredCommentId: Long)
         fun updateLastReadComment(lastReadCommentId: Long)

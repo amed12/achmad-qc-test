@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/18/20 1:30 PM
+ *  * Created by Achmad Fathullah on 10/28/20 9:59 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/18/20 1:29 PM
+ *  * Last modified 10/28/20 9:59 AM
  *
  */
 
@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.qiscus.sdk.chat.core.event.QiscusCommentReceivedEvent
 import id.co.santridev.simplechat.R
 import id.co.santridev.simplechat.chatroom.PersonalChatRoomActivity
 import id.co.santridev.simplechat.core.utils.adapter.ChatRoomAdapter
@@ -21,6 +22,8 @@ import id.co.santridev.simplechat.core.utils.extension.showToast
 import id.co.santridev.simplechat.core.utils.ui.ViewModelFactory
 import id.co.santridev.simplechat.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_home.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 
 class HomeActivity : AppCompatActivity(), OnItemClickListener {
@@ -28,11 +31,12 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
     private val homeViewModel by lazy {
         ViewModelProvider(this, factory)[HomeViewModel::class.java]
     }
-    private val chatRoomAdapter by lazy { ChatRoomAdapter(this) }
+    private lateinit var chatRoomAdapter: ChatRoomAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
+        chatRoomAdapter = ChatRoomAdapter(this)
         recyclerview.setHasFixedSize(true)
         chatRoomAdapter.setOnItemClickListener(this)
         recyclerview.adapter = chatRoomAdapter
@@ -72,6 +76,17 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
 
     override fun onResume() {
         super.onResume()
+        homeViewModel.loadChatRoom()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe
+    fun onCommentReceived(commentReceivedEvent: QiscusCommentReceivedEvent) {
         homeViewModel.loadChatRoom()
     }
 

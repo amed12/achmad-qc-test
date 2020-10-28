@@ -1,8 +1,8 @@
 /*
  * *
- *  * Created by Achmad Fathullah on 10/18/20 12:31 PM
+ *  * Created by Achmad Fathullah on 10/28/20 9:59 AM
  *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 10/18/20 12:27 PM
+ *  * Last modified 10/28/20 9:59 AM
  *
  */
 
@@ -76,9 +76,20 @@ class ChatRoomFragment : Fragment(), ChatRoomPresenter.View, QiscusChatScrollLis
                 }
             }
         }
+        commentsAdapter.setOnItemClickListener(object :
+            CommentsAdapter.RecyclerViewItemClickListener {
+            override fun onItemClick(view: View?, position: Int) {
+
+            }
+
+            override fun onItemLongClick(view: View?, position: Int) {
+
+            }
+
+        })
         val linearManager = LinearLayoutManager(activity)
         linearManager.reverseLayout = true
-        recyclerview.apply {
+        recyclerview?.apply {
             layoutManager = linearManager
             setHasFixedSize(true)
             addOnScrollListener(QiscusChatScrollListener(linearManager, this@ChatRoomFragment))
@@ -120,26 +131,26 @@ class ChatRoomFragment : Fragment(), ChatRoomPresenter.View, QiscusChatScrollLis
     }
 
     override fun showLoading() {
-        progress_bar.visibility = View.VISIBLE
+        progress_bar?.visibility = View.VISIBLE
     }
 
     override fun dismissLoading() {
-        progress_bar.visibility = View.GONE
+        progress_bar?.visibility = View.GONE
     }
 
     override fun showLoadMoreLoading() {
-        progress_bar.visibility = View.VISIBLE
+        progress_bar?.visibility = View.VISIBLE
     }
 
     override fun initRoomData(qiscusChatRoom: QiscusChatRoom, comment: List<QiscusComment>) {
         chatRoom = qiscusChatRoom
         commentsAdapter.addOrUpdate(comment)
         if (comment.isEmpty()) {
-            empty_chat.visibility = View.VISIBLE
-            recyclerview.visibility = View.GONE
+            empty_chat?.visibility = View.VISIBLE
+            recyclerview?.visibility = View.GONE
         } else {
-            empty_chat.visibility = View.GONE
-            recyclerview.visibility = View.VISIBLE
+            empty_chat?.visibility = View.GONE
+            recyclerview?.visibility = View.VISIBLE
         }
         notifyLatestRead()
     }
@@ -154,10 +165,10 @@ class ChatRoomFragment : Fragment(), ChatRoomPresenter.View, QiscusChatScrollLis
 
     override fun onSendingComment(qiscusComment: QiscusComment) {
         commentsAdapter.addOrUpdate(qiscusComment)
-        recyclerview.smoothScrollToPosition(0)
+        recyclerview?.smoothScrollToPosition(0)
         if (empty_chat.isShown) {
-            empty_chat.visibility = View.GONE
-            recyclerview.visibility = View.VISIBLE
+            empty_chat?.visibility = View.GONE
+            recyclerview?.visibility = View.VISIBLE
         }
     }
 
@@ -171,14 +182,18 @@ class ChatRoomFragment : Fragment(), ChatRoomPresenter.View, QiscusChatScrollLis
 
     override fun onNewComment(qiscusComment: QiscusComment) {
         commentsAdapter.addOrUpdate(qiscusComment)
-        if ((recyclerview.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() <= 2) {
-            recyclerview.smoothScrollToPosition(0)
+        if ((recyclerview?.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() <= 2) {
+            recyclerview?.smoothScrollToPosition(0)
         }
 
         if (empty_chat.isShown) {
-            empty_chat.visibility = View.GONE
-            recyclerview.visibility = View.VISIBLE
+            empty_chat?.visibility = View.GONE
+            recyclerview?.visibility = View.VISIBLE
         }
+    }
+
+    override fun refreshComment(qiscusComment: QiscusComment) {
+        commentsAdapter.addOrUpdate(qiscusComment)
     }
 
     override fun onCommentDeleted(qiscusComment: QiscusComment) {
@@ -193,7 +208,8 @@ class ChatRoomFragment : Fragment(), ChatRoomPresenter.View, QiscusChatScrollLis
         commentsAdapter.updateLastReadComment(lastReadCommentId)
     }
 
-    override fun onUserTyping(user: String, typing: Boolean) {}
+    override fun onUserTyping(user: String, typing: Boolean) {
+    }
 
     override fun onLoadCommentsError(throwable: Throwable) {
         throwable.printStackTrace()
